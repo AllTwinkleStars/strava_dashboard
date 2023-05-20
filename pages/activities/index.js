@@ -108,26 +108,6 @@ function Activities() {
                 <DateFilter startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate} resetDateFilter={resetDateFilter} firstItemDate={firstItemDate} lastItemDate={lastItemDate} />
             </div>
             <AllActivities filteredActivities={filteredActivities} paginatedActivities={paginatedActivities} />
-            <div className={activityStyles.bottomRow}>
-                <div className={activityStyles.pagination}>
-                    {totalPages > 1 && (
-                        <div>
-                            {Array.from({ length: totalPages }, (_, index) => (
-                                <button
-                                    key={index}
-                                    className={index + 1 === currentPage ? `${activityStyles.page} ${activityStyles.activePage}` : activityStyles.page}
-                                    onClick={() => handlePageChange(index + 1)}
-                                >
-                                    {index + 1}
-                                </button>
-                            ))}
-                        </div>
-                    )}
-                </div>
-                <div className={activityStyles.activityCount}>
-                    {currentActivitiesCount} of {filteredActivities.length} Total Filtered Activities
-                </div>
-            </div>
         </div>
     );
 }

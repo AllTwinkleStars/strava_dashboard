@@ -5,9 +5,9 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 const AllActivities = ({ filteredActivities, paginatedActivities }) => {
-  return (
-    <div className={activityStyles.allActivities}>
-      <div className={activityStyles.individualHeaderStatContainer}>
+    return (
+        <div className={activityStyles.allActivities}>
+            <div className={activityStyles.individualHeaderStatContainer}>
                 <div className={activityStyles.textEllipsisHeader}>
                     Activity Name
                 </div>
@@ -77,8 +77,28 @@ const AllActivities = ({ filteredActivities, paginatedActivities }) => {
                     </div>
                 )}
             </div>
-    </div>
-  )
+            <div className={activityStyles.bottomRow}>
+                <div className={activityStyles.pagination}>
+                    {totalPages > 1 && (
+                        <div>
+                            {Array.from({ length: totalPages }, (_, index) => (
+                                <button
+                                    key={index}
+                                    className={index + 1 === currentPage ? `${activityStyles.page} ${activityStyles.activePage}` : activityStyles.page}
+                                    onClick={() => handlePageChange(index + 1)}
+                                >
+                                    {index + 1}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                <div className={activityStyles.activityCount}>
+                    {currentActivitiesCount} of {filteredActivities.length} Total Filtered Activities
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default AllActivities

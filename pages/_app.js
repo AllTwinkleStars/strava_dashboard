@@ -8,7 +8,7 @@ import fetchAthleteStats from '../helper_functions/Requests/FetchAthleteStats';
 import fetchActivities from '../helper_functions/Requests/FetchActivities';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Loader from '../Icons/Hexagon';
+import Loader from '../Icons/Loader';
 import Link from 'next/link';
 
 function MyApp({ Component, pageProps }) {
