@@ -1,0 +1,277 @@
+.dashContainer h1 {
+    margin: 2rem 2rem 1rem 2rem;
+}
+
+.title {
+    color: #ffffff;
+
+}
+
+.topRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filterContainer label {
+    padding-right: 1rem;
+    text-align: center;
+    color: #fff;
+    width: 300px;
+    border: none;
+}
+
+.filterContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  
+  .activityFilter {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 100%;
+    height: 40px; /* Adjust height as needed */
+    font-size: 14px; /* Adjust font size as needed */
+    border: 0px solid #ccc; /* Adjust border styles as needed */
+    border-radius: 5px; /* Adjust border radius as needed */
+    background-color: #2d3236;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .activityFilter:focus {
+    outline: none;
+    border-color: #fc5200; /* Adjust focus border color as needed */
+  }
+
+  
+  /* Style the options */
+  .activityFilter option {
+    background-color: #2d3236; /* Adjust background color as needed */
+    padding: 1rem;
+    color: #ffffff; /* Adjust text color as needed */
+    text-align: center;
+  }
+  
+  /* Style the selected option */
+  .activityFilter option:checked {
+    background-color: #fc5200; /* Adjust selected background color as needed */
+    color: #fff; /* Adjust selected text color as needed */
+  }
+  
+
+.optionContainer {
+    padding: 1rem 0;
+}
+
+.statsContainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.statBoxHeader {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #2d3236;
+    color: #ffffff;
+    line-height: 1.9rem;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    border-bottom: 1px solid #ffffff20;
+}
+
+.statBoxHeader h2 {
+    font-size: 1rem;
+    padding-right: 2rem;
+    width: 80px;
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.statBoxHeader p {
+    padding: 0 1rem;
+    width: 150px;
+}
+
+.statBox {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background-color: #2d3236;
+    color: #ffffff;
+    line-height: 1.9rem;
+    text-align: center;
+    height: 100%;
+}
+
+.statBox h2 {
+    font-size: 1rem;
+    padding-right: 2rem;
+    padding-left: 1rem;
+    width: 80px;
+    text-align: left;
+}
+
+.statBox p {
+    padding: 0 1rem;
+    width: 150px;
+}
+
+.statBox:last-child {
+    border-radius: 0 0 10px 10px;
+}
+
+.statRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.statRow p:last-child {
+    padding-right: 0;
+}
+
+.allTotals {
+    margin: 1rem 0 0 0;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.subTitle {
+    color: #fc5200;
+    font-size: 1.5rem;
+    padding: 2rem;
+}
+
+.boxContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.boxTitle {
+    padding: 0.5rem 0;
+    text-align: center;
+    background-color: #fc5200;
+    border-radius: 5px 5px 0 0;
+}
+
+.totalCountsContainer {
+    display: flex;
+    flex-direction: row;
+    width: 45%;
+}
+
+.totalCounts {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 2rem;
+    background-color: #2d3236;
+    color: #ffffff;
+    line-height: 1.9rem;
+    text-align: center;
+    margin: 2rem 0 0 2rem;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.lastActivity {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0rem 1rem;
+    background-color: #2d3236;
+    color: #ffffff;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.lastActivity P {
+    padding:1rem 2rem;
+    height:74px;
+    display: flex;
+    align-items: center;
+}
+
+.lastActivityRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 70%;
+}
+
+.lastActivityLeftColumn {
+    width: 30%;
+}
+
+.lastActivityStat {
+    padding: 1rem;
+}
+
+.lastActivityStat:last-child {
+    padding: 1rem 0 1rem 1rem;
+}
+
+.lastActivityStatImage {
+    padding: 1.4rem 1rem 1rem 0;
+}
+
+.sportImage {
+    padding-top: 0.4rem;
+}
+
+@media only screen and (max-width: 1200px) {
+    .title {
+        text-align: center;
+        font-size: 1.6rem;
+        padding-bottom: 1rem;
+    }
+    .topRow {
+        flex-direction: column;
+    }
+    .boxContainer {
+        flex-direction: column;
+    }
+    .allTotals {
+        width: 100%;
+    }
+    .statRow p {
+        font-size: 0.9rem;
+    }
+    .lastActivityLeftColumn {
+        width: 100%;
+        text-align: center;
+    }
+    .lastActivityStatImage {
+        padding: 0;
+    }
+    .lastActivity {
+        width: 100%;
+        padding: 1rem;
+    }
+    .lastActivity h2 {
+        padding-bottom: 1rem;
+    }
+    .lastActivity, .lastActivityRow {
+        flex-direction: column;
+    }
+    .lastActivityRow {
+        padding:0;
+        justify-content: center;
+        text-align: center;
+    }
+    .lastActivityStat:last-child {
+        padding: 1rem;
+    }
+}

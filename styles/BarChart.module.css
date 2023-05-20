@@ -1,0 +1,52 @@
+.chartContainer {
+    background-color: #2d3236;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+    position: relative;
+    width:33%;
+}
+
+.doughnutContainer {
+    display: flex;
+    justify-content: center;
+    background-color: #2d3236;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 10px;
+    width:33%;
+}
+
+.lineContainer {
+    display: flex;
+    justify-content: center;
+    background-color: #2d3236;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 10px;
+    width:33%;
+}
+
+.bubbleContainer {
+    display: flex;
+    justify-content: flex-start;
+    background-color: #2d3236;
+    padding: 1rem;
+    margin: 1rem 0 0 1rem;
+    border-radius: 10px;
+    width:50%;
+  }
+
+@media only screen and (max-width: 1200px) {
+    .chartContainer, .doughnutContainer, .lineContainer, .bubbleContainer {
+        width: 100%;
+        height: auto;
+    }
+
+    .lineContainer, .doughnutContainer, .chartContainer {
+        margin:0 0 1rem 0;
+    }
+     .bubbleContainer {
+        margin: 1rem 0;
+    }
+}

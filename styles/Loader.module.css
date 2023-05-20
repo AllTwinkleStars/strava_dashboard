@@ -1,0 +1,47 @@
+
+
+.loadingText {
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+.loaderContainer {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+}
+
+.loading svg {
+  transform: rotate(90deg);
+}
+
+@keyframes spin {
+  0% {
+    position: absolute;
+    left:20%;
+  }
+
+  100% {
+    position: absolute;
+    left:80%;
+  }
+}
+
+.loading {
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+}
+
+.newcontainer {
+  min-height: 100vh;
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
