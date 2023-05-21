@@ -1,6 +1,6 @@
 import navbarStyles from '../../styles/Navbar.module.css';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Logout from '../../Icons/Logout.js';
 import User from '../../Icons/User.js';
 import { useRouter } from 'next/router';
@@ -27,6 +27,16 @@ const Navbar = (props) => {
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
   };
+
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      // Disable scrolling when mobile menu is open
+      document.body.classList.add(navbarStyles.noScroll);
+    } else {
+      // Enable scrolling when mobile menu is closed
+      document.body.classList.remove(navbarStyles.noScroll);
+    }
+  }, [isMobileMenuOpen]);
 
   if (props.accessToken) {
     return (
@@ -95,13 +105,19 @@ const Navbar = (props) => {
           </div>
           <div className={isMobileMenuOpen ? `${navbarStyles.mobileMenu} ${navbarStyles.slideIn}` : navbarStyles.hidden}>
             <div className={navbarStyles.mobileLinkItems}>
+            <li className={navbarStyles.logo}>
+            <Link onClick={closeMobileMenu} href='/'>
+              STRAVA
+              <span className={navbarStyles.connect}>CONNECT</span>
+            </Link>
+          </li>
               <Link onClick={closeMobileMenu} className={navbarStyles.mobileDropdownItem} href="/">
                 Dashboard
               </Link>
               <Link onClick={closeMobileMenu} className={navbarStyles.mobileDropdownItem} href="/activities">
                 All Activities
               </Link>
-              <Link onClick={closeMobileMenu} className={navbarStyles.mobileDropdownItem} href="/">
+              <Link onClick={closeMobileMenu} className={navbarStyles.mobileDropdownItem} href="/uploadactivity">
                 Upload an Activity
               </Link>
               <Link onClick={closeMobileMenu} className={navbarStyles.mobileDropdownItem} href="/profile">

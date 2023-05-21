@@ -4,7 +4,7 @@ import LastActivityRow from './LastActivityRow';
 
 const LastActivity = ({  lastActivity, selectedActivity}) => {
   return (
-    <div className={dashboardStyles.boxContainer}>
+
         <div className={dashboardStyles.lastActivity}>
           <div className={dashboardStyles.lastActivityLeftColumn}>
             <h2>Your Last Activity</h2>
@@ -15,7 +15,7 @@ const LastActivity = ({  lastActivity, selectedActivity}) => {
             <p>No activity of type {selectedActivity} found.</p>
           )}
         </div>
-      </div>
+     
   )
 }
 

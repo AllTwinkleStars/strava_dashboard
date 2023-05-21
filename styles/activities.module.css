@@ -220,22 +220,6 @@
     border-radius: 10px;
 }
 
-.kudos {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-right: 1rem;
-}
-
-.kudos p {
-    padding-right: 0.5rem;
-}
-
-.kudosandDate {
-    display: flex;
-    align-items: center;
-}
-
 .textEllipsis {
     width: 500px;
     font-size: 1rem;
@@ -267,30 +251,36 @@
     transition: 0.2s ease-in;
 }
 
-@media only screen and (max-width: 800px) {
-    .titleFilter, .activityHeader, .topLeft {
-        flex-direction: column;
-    }
+.dateFieldsContainer, .dateFields {
+    display: flex;
+    flex-direction: row;
+}
 
-    .sportFilter {
-        margin: 1rem;
-    }
-
-    .textEllipsis {
-        width: 400px;
-        padding-bottom: 1rem;
-        text-align: center;
-
-    }
-
-    .kudosandDate {
-        padding-bottom: 0.5rem;
-    }
+.resetButton {
+    display: flex;
 }
 
 @media only screen and (max-width: 1100px) {
     .titleFilter, .activityHeader, .topLeft {
         flex-direction: column;
+    }
+    .dateFieldsContainer {
+        flex-direction: column;
+    }
+    .dateFields > div:nth-child(2) > div > input {
+        margin-right: 0;
+    }
+    .titleFilter {
+        margin-top: 1rem;
+    }
+    .resetButton {
+        justify-content: center;
+        padding-top: 1rem;
+        
+    }
+
+    .resetButton button {
+        width: 100%;
     }
 
     .sportFilter {
@@ -322,7 +312,14 @@
     }
 
     .activityContainer {
-        height: 58vh;
+        height: 45vh;
+        overflow: hidden;
+    }
+
+    .activity {
+        margin: 1rem 0;
+        border-radius: 10px;
+        padding: 2rem;
     }
 
     .dateFilter {

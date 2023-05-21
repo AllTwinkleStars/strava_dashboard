@@ -87,8 +87,7 @@
 
 .statBoxHeader h2 {
     font-size: 1rem;
-    padding-right: 2rem;
-    width: 80px;
+    width: 140px;
     text-align: left;
     padding-left: 1rem;
 }
@@ -101,19 +100,17 @@
 .statBox {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: 0.2rem 1rem;
     background-color: #2d3236;
     color: #ffffff;
     line-height: 1.9rem;
     text-align: center;
-    height: 100%;
 }
 
 .statBox h2 {
     font-size: 1rem;
-    padding-right: 2rem;
     padding-left: 1rem;
-    width: 80px;
+    width: 140px;
     text-align: left;
 }
 
@@ -190,10 +187,11 @@
     flex-direction: row;
     align-items: center;
     padding: 0rem 1rem;
+    margin: 1rem 0 0 1rem;
     background-color: #2d3236;
     color: #ffffff;
     border-radius: 10px;
-    width: 50%;
+    height: 30%;
 }
 
 .lastActivity P {
@@ -231,10 +229,24 @@
     padding-top: 0.4rem;
 }
 
+.stackedCharts {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.poweredBy {
+    display: flex;
+}
+
+.stravaLogo svg {
+    width: 200px;
+}
+
 @media only screen and (max-width: 1200px) {
     .title {
         text-align: center;
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         padding-bottom: 1rem;
     }
     .topRow {
@@ -262,6 +274,7 @@
     .lastActivity {
         width: 100%;
         padding: 1rem;
+        margin:0 0 1rem 0rem;
     }
     .lastActivity h2 {
         padding-bottom: 1rem;
@@ -276,5 +289,15 @@
     }
     .lastActivityStat:last-child {
         padding: 1rem;
+    }
+    .stackedCharts {
+        width: 100%;
+    }
+    .poweredBy {
+        justify-content: center;
+        padding-bottom: 1rem;
+    }
+    .poweredBy p {
+        text-align: center;
     }
 }

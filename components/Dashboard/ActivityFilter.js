@@ -15,7 +15,9 @@ const ActivityFilter = ({ selectedActivity, handleActivityChange }) => {
         <option value="Run">Run</option>
         <option value="Ride">Ride</option>
         <option value="Swim">Swim</option>
+        <option value="Walk">Walk</option>
         <option value="WeightTraining">Weight Training</option>
+        <option value="Workout">Workout</option>
         {/* Add more activity options as needed */}
       </select>
     </div>
