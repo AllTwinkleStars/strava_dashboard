@@ -107,7 +107,7 @@ function Activities() {
                 <SportFilter selectedSportTypes={selectedSportTypes} setSelectedSportTypes={setSelectedSportTypes} />
                 <DateFilter startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate} resetDateFilter={resetDateFilter} firstItemDate={firstItemDate} lastItemDate={lastItemDate} />
             </div>
-            <AllActivities filteredActivities={filteredActivities} paginatedActivities={paginatedActivities} />
+            <AllActivities filteredActivities={filteredActivities} paginatedActivities={paginatedActivities} totalPages={totalPages} currentActivitiesCount ={currentActivitiesCount} currentPage ={currentPage } />
         </div>
     );
 }
