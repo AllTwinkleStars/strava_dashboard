@@ -132,7 +132,7 @@ function MyApp({ Component, pageProps }) {
           <div className={homeStyles.card}>
             <div className={homeStyles.title}>Welcome to StravaConnect</div>
             <Link
-              href={`https://www.strava.com/oauth/authorize?client_id=97178&redirect_uri=http://localhost:3000&response_type=code&scope=read,activity:read_all,activity:write,profile:read_all`}
+              href={`https://www.strava.com/oauth/authorize?client_id=97178&redirect_uri=https://friendly-daffodil-a99ceb.netlify.app&response_type=code&scope=read,activity:read_all,activity:write,profile:read_all`}
             >
               <button className={homeStyles.btn}>Login with Your Strava Account</button>
             </Link>
