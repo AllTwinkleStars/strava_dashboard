@@ -66,7 +66,6 @@ const BarChart = ({ selectedActivity }) => {
         },
       },
       plugins: {
-        responsive: true,
         tooltip: {
           callbacks: {
             label: (context) => {

@@ -4,9 +4,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 const DateFilter = ({ startDate, endDate, setStartDate, setEndDate, resetDateFilter, firstItemDate, lastItemDate }) => {
-    
-  return (
-    <div className={activityStyles.dateFilter}>
+
+    return (
+        <div className={activityStyles.dateFilter}>
+            <div className={activityStyles.dateFieldsContainer}>
+                <div className={activityStyles.dateFields}>
                     <DatePicker
                         selected={startDate}
                         onChange={date => setStartDate(date)}
@@ -25,6 +27,8 @@ const DateFilter = ({ startDate, endDate, setStartDate, setEndDate, resetDateFil
                         placeholderText="End Date"
                         dateFormat="dd/MM/yyyy"
                     />
+                </div>
+                <div className={activityStyles.resetButton}>
                     <button
                         className={activityStyles.reset}
                         onClick={resetDateFilter}
@@ -33,7 +37,9 @@ const DateFilter = ({ startDate, endDate, setStartDate, setEndDate, resetDateFil
                         Reset
                     </button>
                 </div>
-  )
+            </div>
+        </div>
+    )
 }
 
 export default DateFilter

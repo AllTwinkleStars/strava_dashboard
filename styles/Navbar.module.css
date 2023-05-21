@@ -18,6 +18,14 @@
   color: #2d3236 !important;
 }
 
+.noScroll {
+  overflow: hidden;
+}
+
+.mobileMenu .logo {
+  padding: 0 1rem 1rem 1rem;
+}
+
 .navullist {
   display: flex;
   flex-direction: row;

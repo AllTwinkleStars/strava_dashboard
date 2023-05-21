@@ -2,13 +2,14 @@ import React from 'react';
 import dashboardStyles from '../../../styles/Dashboard.module.css';
 import BubbleChart from '../Charts/BubbleChart';
 import StatsBox from '../StatBox';
+import LastActivity from '../Last Activity/LastActivity';
 
-const TotalsAndBubble = ({ athleteStats, selectedActivity }) => {
+const TotalsAndBubble = ({ activities, selectedActivity, lastActivity }) => {
 
-    const renderStatsBox = (title, stats, activityType) => {
-        if (stats.count !== 0 && (activityType === 'All' || activityType === title)) {
+    const renderStatsBox = (title, activities, activityType) => {
+        if ((activityType === 'All' || activityType === title)) {
             return (
-                <StatsBox title={title} stats={stats} activityType={activityType} />
+                <StatsBox title={title} activities={activities} activityType={activityType} />
             );
         }
         return (
@@ -25,17 +26,21 @@ const TotalsAndBubble = ({ athleteStats, selectedActivity }) => {
                         <p>Total count</p>
                         <p>Distance</p>
                         <p>Elapsed Time</p>
-                        <p>Moving Time</p>
                     </div>
                 </div>
                 <div className={dashboardStyles.statsContainer}>
-                    {athleteStats && athleteStats.all_run_totals && renderStatsBox('Run', athleteStats.all_run_totals, selectedActivity)}
-                    {athleteStats && athleteStats.all_ride_totals && renderStatsBox('Ride', athleteStats.all_ride_totals, selectedActivity)}
-                    {athleteStats && athleteStats.all_swim_totals && renderStatsBox('Swim', athleteStats.all_swim_totals, selectedActivity)}
-                    {/* Add more activity stats rendering based on selectedActivity */}
+                    {activities && renderStatsBox('Run', activities, selectedActivity)}
+                    {activities && renderStatsBox('Ride', activities, selectedActivity)}
+                    {activities && renderStatsBox('Swim', activities, selectedActivity)}
+                    {activities && renderStatsBox('WeightTraining', activities, selectedActivity)}
+                    {activities && renderStatsBox('Workout', activities, selectedActivity)}
+                    {activities && renderStatsBox('Walk', activities, selectedActivity)}
                 </div>
             </div>
-            <BubbleChart selectedActivity={selectedActivity} />
+            <div className={dashboardStyles.stackedCharts}>
+                <BubbleChart selectedActivity={selectedActivity} />
+                <LastActivity lastActivity={lastActivity} selectedActivity={selectedActivity} />
+            </div>
         </div>
     )
 }

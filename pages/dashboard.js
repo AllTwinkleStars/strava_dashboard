@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import TitleAndFilter from '../components/Dashboard/Top Row/TitleAndFilter';
 import TotalsAndBubble from '../components/Dashboard/Totals and Bubble/TotalsAndBubble';
 import ChartRow from '../components/Dashboard/Chart Row/ChartRow';
-import LastActivity from '../components/Dashboard/Last Activity/LastActivity';
+import StravaLogo from '../Icons/StravaLogo';
+import dashboardStyles from '../styles/Dashboard.module.css';
 
 const Dashboard = () => {
 
   const storedAthleteData = localStorage.getItem('athleteData');
-  const storedAthleteStats = localStorage.getItem('athleteStats');
   const storedActivityData = localStorage.getItem('activityData');
 
   const athleteData = JSON.parse(storedAthleteData);
-  const athleteStats = JSON.parse(storedAthleteStats);
   const activities = JSON.parse(storedActivityData);
 
   const [selectedActivity, setSelectedActivity] = useState('All');
@@ -33,9 +32,12 @@ const Dashboard = () => {
         selectedActivity={selectedActivity}
         handleActivityChange={handleActivityChange}
       />
-      <TotalsAndBubble athleteStats={athleteStats} selectedActivity={selectedActivity} />
+      <TotalsAndBubble activities={activities} selectedActivity={selectedActivity} lastActivity={lastActivity} />
       <ChartRow selectedActivity={selectedActivity} />
-      <LastActivity lastActivity={lastActivity} selectedActivity={selectedActivity} />
+      <div className={dashboardStyles.poweredBy}>
+      <p>Powered by <StravaLogo /></p>
+
+      </div>
     </div>
   );
 }
