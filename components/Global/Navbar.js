@@ -1,11 +1,11 @@
 import navbarStyles from '../../styles/Navbar.module.css';
 import Link from 'next/link';
 import { useState } from 'react';
-import Logout from '../../Icons/logout';
-import User from '../../Icons/User';
+import Logout from '../../Icons/Logout.js';
+import User from '../../Icons/User.js';
 import { useRouter } from 'next/router';
-import Menu from '../../Icons/Menu';
-import Close from '../../Icons/Close'
+import Menu from '../../Icons/Menu.js';
+import Close from '../../Icons/Close.js'
 
 const Navbar = (props) => {
   const { athlete } = props;
