@@ -8,7 +8,7 @@ import Menu from '../../Icons/Menu.js';
 import Close from '../../Icons/Close.js'
 
 const Navbar = (props) => {
-  const { athlete } = props;
+  const { athlete, mode } = props;
 
   const router = useRouter();
   const url = router.route;
