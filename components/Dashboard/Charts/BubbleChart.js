@@ -53,7 +53,7 @@ const BubbleChart = (selectedActivity) => {
 
             // If the activity's date is within the last 7 days, create a bubble dataset
             if (index !== -1) {
-                const scalingFactor = 0.008; // Adjust the scaling factor as needed
+                const scalingFactor = 0.002; // Adjust the scaling factor as needed
                 const dataset = {
                     label: date,
                     data: [{ x: date, y: 1, r: duration * scalingFactor }], // Set y to 1 for all bubbles
@@ -71,12 +71,12 @@ const BubbleChart = (selectedActivity) => {
 
         const handleBarClick = (event, elements) => {
             if (elements.length > 0) {
-                const clickedIndex = elements[0].index;
-                const activity = filteredActivities[clickedIndex];
-                const activityId = activity.id;
-                router.push(`/activities/${activityId}`);
+              const clickedIndex = elements[0].index;
+              const clickedActivity = filteredActivities[clickedIndex];
+              const clickedActivityId = clickedActivity.id;
+              router.push(`/activities/${clickedActivityId}`);
             }
-        };
+          };
 
         // Define the chart options
         const options = {
@@ -94,7 +94,7 @@ const BubbleChart = (selectedActivity) => {
                             const activity = filteredActivities[dataIndex]; // Use the correct index within filteredActivities
                             const distance = metersToKilometers(activity.distance);
                             const sportType = activity.sport_type === 'WeightTraining' ? 'Weight Training' : activity.sport_type;
-                            const startDate = formatDate(activity.start_date_local);
+                            const startDate = formatDate(new Date(activity.start_date_local));
                             const distanceLabel = distance > 0 ? `Distance: ${distance}Km\n` : '';
                             const tooltipLabels = [
                               `Name: ${activity.name}`,
@@ -108,7 +108,6 @@ const BubbleChart = (selectedActivity) => {
                           
                             return tooltipLabels;
                           },
-                          
                     },
                     displayColors: false, // Hide color indicators in tooltip
                     backgroundColor: '#2d3236', // Set tooltip background color
