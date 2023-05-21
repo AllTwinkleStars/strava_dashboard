@@ -125,6 +125,7 @@ function MyApp({ Component, pageProps }) {
   }, [accessToken]);
 
   // if access token is null, show connect page
+  // https://friendly-daffodil-a99ceb.netlify.app
   if (!accessToken) {
     return (
       <div className={homeStyles.container}>
