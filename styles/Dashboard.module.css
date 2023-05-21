@@ -249,6 +249,9 @@
     .statRow p {
         font-size: 0.9rem;
     }
+    .statRow p:last-child {
+        display: none !important;
+    }
     .lastActivityLeftColumn {
         width: 100%;
         text-align: center;
