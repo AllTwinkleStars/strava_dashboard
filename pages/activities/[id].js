@@ -1,10 +1,10 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import fetchActivityDetails from "../../Requests/FetchActivityDetails";
+import fetchActivityDetails from "../../helper_functions/Requests/FetchActivityDetails";
 import styles from '../../styles/activityDetails.module.css';
 import dynamic from "next/dynamic";
 import ChevronLeft from '../../Icons/ChevronLeft';
-import Loader from "../../Icons/Hexagon";
+import Loader from "../../Icons/Loader";
 import loaderStyles from '../../styles/Loader.module.css';
 
 const MyMap = dynamic(() => import("../../components/Activities/Map"), { ssr: false })
