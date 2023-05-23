@@ -4,12 +4,12 @@ import BarChart from '../Charts/BarChart';
 import LineChart from '../Charts/LineChart';
 import DonutChart from '../Charts/DoughnutChart';
 
-const ChartRow = ({ selectedActivity }) => {
+const ChartRow = ({ selectedActivity, activities }) => {
   return (
     <div className={dashboardStyles.boxContainer}>
-        <BarChart selectedActivity={selectedActivity} />
-        <LineChart selectedActivity={selectedActivity} />
-        <DonutChart selectedActivity={selectedActivity} />
+        <BarChart selectedActivity={selectedActivity} activities={activities} />
+        <LineChart selectedActivity={selectedActivity} activities={activities} />
+        <DonutChart selectedActivity={selectedActivity} activities={activities} />
       </div>
   )
 }

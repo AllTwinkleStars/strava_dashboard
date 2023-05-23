@@ -1,7 +1,6 @@
 import Dashboard from './dashboard';
 
 const Home = (props) => {
-  if (props.athleteData && props.athleteStats) {
     return (
       <>
         <Dashboard
@@ -12,6 +11,5 @@ const Home = (props) => {
       </>
     );
   }
-}
 
 export default Home;

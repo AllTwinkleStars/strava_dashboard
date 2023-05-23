@@ -4,7 +4,7 @@ import { formatDate, formatTime, getImageSrc, metersToKilometers } from '../../h
 import Link from 'next/link';
 import Image from 'next/image';
 
-const AllActivities = ({ filteredActivities, paginatedActivities, totalPages, currentActivitiesCount,currentPage }) => {
+const AllActivities = ({ filteredActivities, paginatedActivities, totalPages, currentActivitiesCount,currentPage, handlePageChange }) => {
     return (
         <div className={activityStyles.allActivities}>
             <div className={activityStyles.individualHeaderStatContainer}>

@@ -26,13 +26,17 @@
     justify-content: space-between;
 }
 
-.dateFilter input, .dateFilter button {
+.dateFilter input {
+    height: 15px;
+    border-radius: 5px;
+}
+
+.dateFilter button {
     height: 35px;
     border-radius: 5px;
 }
 
 .dateFilter input {
-    margin-right: 1rem;
     text-align: center;
     background-color: #2d3236;
     border: #2d3236;
@@ -49,7 +53,7 @@
 
 .dateFilter button[disabled] {
     background-color: transparent;
-    border: 0.5px solid #ffffff20;
+    border: 1px solid #ffffff20;
     color: #ffffff20;
     cursor: not-allowed;
 }
@@ -107,11 +111,27 @@
     padding-top: 2rem;
 }
 
+.sliderContainer {
+    width: 100%;
+    max-width: 350px; /* Adjust the maximum width as needed */
+    margin: 0 auto;
+  }
+
+
+
 .pagination button {
     cursor: pointer;
     background-color: #2d3236;
     border: 0.5px solid #2d3236;
     color: #ffffff;
+}
+
+.pagination button:first-child {
+    border-radius: 5px 0 0 5px;
+}
+
+.pagination button:last-child {
+    border-radius: 0 5px 5px 0;
 }
 
 .activePage {
@@ -186,7 +206,6 @@
     text-align: center;
     display: flex;
     flex-direction: row;
-    border-radius: 10px;
 }
 
 .filterOption {
@@ -198,18 +217,13 @@
     padding: 0.3rem 1rem;
     cursor: pointer;
     border: 2px solid #2d3236;
-}
-
-.filterOption:first-child {
-    border-radius: 5px 0 0 5px;
-}
-
-.filterOption:last-child {
-    border-radius: 0 5px 5px 0;
+    transition: 0.2s ease-in;
 }
 
 .active {
+    background-color: #fc5200;
     border: 2px solid #fc5200;
+    transition: 0.2s ease-in;
 }
 
 .imageFilter {
@@ -217,7 +231,6 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
 }
 
 .textEllipsis {
@@ -254,7 +267,14 @@
 .dateFieldsContainer, .dateFields {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
+
+.dateFields > div {
+    margin: 0 2rem 0 0 !important;
+}
+
 
 .resetButton {
     display: flex;

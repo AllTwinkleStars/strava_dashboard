@@ -2,43 +2,47 @@ import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import styles from '../../../styles/BarChart.module.css';
 import { Chart, ArcElement } from 'chart.js';
+import {convertCamelCaseToWords} from '../../../helper_functions/helper'
 
 Chart.register(ArcElement);
 
-const DonutChart = ({ selectedActivity }) => {
-  const storedActivityData = localStorage.getItem('athleteStats');
-  if (storedActivityData) {
-    const parsedActivityData = JSON.parse(storedActivityData);
+const DonutChart = ({ selectedActivity, activities }) => {
+  if (activities) {
 
-    let activityData = null;
-    if (selectedActivity === 'All') {
-      activityData = {
-        runCount: parsedActivityData.all_run_totals.count,
-        rideCount: parsedActivityData.all_ride_totals.count,
-        swimCount: parsedActivityData.all_swim_totals.count,
-      };
-    } else {
-      const selectedActivityData = parsedActivityData[
-        `all_${selectedActivity.toLowerCase()}_totals`
-      ];
-      if (selectedActivityData) {
-        activityData = {
-          [selectedActivity.toLowerCase() + 'Count']: selectedActivityData.count,
-        };
+    let counts = {};
+
+    for (let activity of activities) {
+      const activityType = activity.sport_type;
+      if (!counts[activityType]) {
+        counts[activityType] = { count: 0 };
+      }
+      if (selectedActivity === 'All' || activityType === selectedActivity) {
+        counts[activityType].count++;
       }
     }
 
-    if (activityData) {
-      const { runCount, rideCount, swimCount } = activityData;
+    if (activities) {
+      let labels = Object.keys(counts);
+      const countsArray = Object.values(counts);
+      const colors = ['#fc5200', '#ffaa00', '#ab26e5', '#0099ff', '#4f5eee', '#2ad838', '#ffffff'];
 
-      const colors = ['#fc5200', '#ffcc00', '#0099ff'];
+      if (selectedActivity !== 'All') {
+        labels = labels.filter((label) => label === selectedActivity);
+      }
+
+      const formattedLabels = []
+
+      for (let label of labels) {
+        const formattedLabel = convertCamelCaseToWords(label)
+        formattedLabels.push(formattedLabel)
+      }
 
       const chartData = {
-        labels: ['Run', 'Ride', 'Swim'],
+        labels: formattedLabels,
         datasets: [
           {
-            data: [runCount, rideCount, swimCount],
-            backgroundColor: colors,
+            data: countsArray.map((count) => count.count),
+            backgroundColor: colors.slice(0, labels.length),
           },
         ],
       };
@@ -55,11 +59,32 @@ const DonutChart = ({ selectedActivity }) => {
               size: 24,
             },
           },
+          tooltip: {
+            displayColors: false, // Hide color indicators in tooltip
+          backgroundColor: '#2d3236', // Set tooltip background color
+          borderColor: '#fc5200', // Set tooltip border color
+          borderWidth: 1, // Set tooltip border width
+          cornerRadius: 4, // Set tooltip corner radius
+          padding: 8, // Set tooltip padding
+          titleFont: { size: 14, weight: 'bold' }, // Set tooltip title font
+          bodyFont: { size: 12 }, // Set tooltip body font
+          bodySpacing: 4, // Set spacing between tooltip body elements
+          bodyAlign: 'center', // Set alignment of tooltip body elements
+          caretPadding: 8, // Set padding around tooltip caret
+          }
         },
         responsive: true, // Make the chart responsive
         maintainAspectRatio: false, // Allow chart to adjust height
         height: 100,
       };
+
+      if (labels.length === 0) {
+        return (
+          <div className={styles.doughnutContainer}>
+            <p>No events found.</p>
+          </div>
+        );
+      }
 
       return (
         <div className={styles.doughnutContainer}>

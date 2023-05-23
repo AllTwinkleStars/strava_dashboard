@@ -89,13 +89,13 @@ img.profileImg {
 .linkItem a:hover, .dropdownContent a:hover {
   background-color: #fc5200;
   color: #fff;
-  transition: 0.4s;
+  transition: 0.2s;
 }
 
 .light .linkItem a:hover, .light .dropdownContent a:hover {
   background-color: #fc5200 !important;
   color: #fff !important;
-  transition: 0.4s;
+  transition: 0.2s;
 }
 
 .dropdown {
@@ -192,6 +192,7 @@ img.profileImg {
 
 .themeSwitch {
   margin-right: 5rem;
+  width:100px;
 }
 
 .themeSwitch label {
@@ -217,6 +218,8 @@ img.profileImg {
   flex-direction: column;
   overflow: hidden; 
 }
+
+
 
 .slideIn {
   animation-name: slideIn;

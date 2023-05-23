@@ -3,54 +3,26 @@ import activityStyles from '../../styles/activities.module.css';
 import SportFilter from "../../components/Activities/Filters/SportFilter";
 import DateFilter from "../../components/Activities/Filters/DateFilter";
 import AllActivities from "../../components/Activities/AllActivities";
+import { useSpring, animated } from '@react-spring/web';
+import dayjs from "dayjs";
 
-function Activities() {
-    const storedActivities = localStorage.getItem('activityData');
-    const parsedActivities = JSON.parse(storedActivities);
+function Activities({ activities }) {
 
-    const firstItemDate = new Date(parsedActivities[0].start_date_local);
-    const lastItemDate = new Date(parsedActivities[parsedActivities.length - 1].start_date_local);
-
+    const firstItemDate = new Date(activities[0].start_date_local);
+    const lastItemDate = new Date(activities[activities.length - 1].start_date_local);
+    const [startDate, setStartDate] = useState(dayjs(lastItemDate));
+    const [endDate, setEndDate] = useState(dayjs(firstItemDate));
     const [filteredActivities, setFilteredActivities] = useState([]);
-    const [startDate, setStartDate] = useState(lastItemDate);
-    const [endDate, setEndDate] = useState(firstItemDate);
     const [selectedSportTypes, setSelectedSportTypes] = useState([]);
     const perPage = 30;
     const [currentPage, setCurrentPage] = useState(1);
 
     useEffect(() => {
-        handleDateFilter();
-    }, [endDate, startDate]);
-
-    useEffect(() => {
         handleSportTypeFilter();
     }, [selectedSportTypes]);
 
-    const handleDateFilter = () => {
-        let filtered = parsedActivities.filter(activity => {
-            const activityDate = new Date(activity.start_date_local);
-            if (
-                (startDate && activityDate < startDate) ||
-                (endDate && activityDate > endDate)
-            ) {
-                return false;
-            }
-            return true;
-        });
-
-        if (selectedSportTypes.length > 0) {
-            filtered = filtered.filter(activity =>
-                selectedSportTypes.includes(activity.sport_type)
-            );
-        }
-
-        setFilteredActivities(filtered);
-        setCurrentPage(1);
-    };
-
-
     const handleSportTypeFilter = () => {
-        let filtered = parsedActivities;
+        let filtered = activities;
 
         if (selectedSportTypes.length > 0) {
             filtered = filtered.filter((activity) =>
@@ -75,13 +47,6 @@ function Activities() {
         setCurrentPage(1);
     };
 
-    const resetDateFilter = () => {
-        if (lastItemDate && firstItemDate) {
-            setStartDate(lastItemDate);
-            setEndDate(firstItemDate);
-        }
-    };
-
     const totalPages = Math.ceil(filteredActivities.length / perPage);
     const paginatedActivities = filteredActivities.slice(
         (currentPage - 1) * perPage,
@@ -98,17 +63,49 @@ function Activities() {
 
     const currentActivitiesCount = paginatedActivities.length; // Count of activities on the current page
 
+    const springs = useSpring({
+        from: { x: -100 },
+        to: { x: 0 },
+    })
+
     return (
-        <div className="container">
-            <div className={activityStyles.titleFilter}>
-                <h1 className={activityStyles.title}>
-                    All Activities
-                </h1>
-                <SportFilter selectedSportTypes={selectedSportTypes} setSelectedSportTypes={setSelectedSportTypes} />
-                <DateFilter startDate={startDate} endDate={endDate} setStartDate={setStartDate} setEndDate={setEndDate} resetDateFilter={resetDateFilter} firstItemDate={firstItemDate} lastItemDate={lastItemDate} />
+        <animated.div
+            style={{
+                ...springs,
+            }}>
+            <div className="container">
+                <div className={activityStyles.titleFilter}>
+                    <h1 className={activityStyles.title}>
+                        All Activities
+                    </h1>
+                    <SportFilter
+                        selectedSportTypes={selectedSportTypes}
+                        setSelectedSportTypes={setSelectedSportTypes}
+                        parsedActivities={activities}
+                    />
+                    <DateFilter
+                        parsedActivities={activities}
+                        firstItemDate={firstItemDate}
+                        lastItemDate={lastItemDate}
+                        selectedSportTypes={selectedSportTypes}
+                        setFilteredActivities={setFilteredActivities}
+                        setCurrentPage={setCurrentPage}
+                        startDate={startDate}
+                        endDate={endDate}
+                        setStartDate={setStartDate}
+                        setEndDate={setEndDate}
+                    />
+                </div>
+                <AllActivities
+                    filteredActivities={filteredActivities}
+                    paginatedActivities={paginatedActivities}
+                    totalPages={totalPages}
+                    currentActivitiesCount={currentActivitiesCount}
+                    currentPage={currentPage}
+                    handlePageChange={handlePageChange}
+                />
             </div>
-            <AllActivities filteredActivities={filteredActivities} paginatedActivities={paginatedActivities} totalPages={totalPages} currentActivitiesCount ={currentActivitiesCount} currentPage ={currentPage } />
-        </div>
+        </animated.div>
     );
 }
 

@@ -5,10 +5,9 @@ import styles from '../../../styles/BarChart.module.css';
 
 Chart.register(Title, CategoryScale, LinearScale, PointElement, Tooltip, LineController, LineElement);
 
-const LineChart = ({ selectedActivity }) => {
-  const storedActivityData = localStorage.getItem('activityData');
-  if (storedActivityData) {
-    const activities = JSON.parse(storedActivityData);
+const LineChart = ({ selectedActivity, activities }) => {
+
+  if (activities) {
 
     const currentYear = new Date().getFullYear();
     const filteredActivities = selectedActivity === 'All'
@@ -59,6 +58,19 @@ const LineChart = ({ selectedActivity }) => {
         legend: {
           display: false,
         },
+        tooltip: {
+          displayColors: false, // Hide color indicators in tooltip
+        backgroundColor: '#2d3236', // Set tooltip background color
+        borderColor: '#fc5200', // Set tooltip border color
+        borderWidth: 1, // Set tooltip border width
+        cornerRadius: 4, // Set tooltip corner radius
+        padding: 8, // Set tooltip padding
+        titleFont: { size: 14, weight: 'bold' }, // Set tooltip title font
+        bodyFont: { size: 12 }, // Set tooltip body font
+        bodySpacing: 4, // Set spacing between tooltip body elements
+        bodyAlign: 'center', // Set alignment of tooltip body elements
+        caretPadding: 8, // Set padding around tooltip caret
+        }
       },
     };
 

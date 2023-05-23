@@ -38,3 +38,8 @@ export const getImageSrc = (sportType) => {
   );
   return activityImage ? activityImage.image : null;
 };
+
+export const convertCamelCaseToWords = (text) => {
+  // Use regular expression to insert spaces before capital letters
+  return text.replace(/([A-Z])/g, ' $1').trim();
+};
