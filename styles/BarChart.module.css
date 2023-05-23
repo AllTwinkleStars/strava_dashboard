@@ -1,39 +1,44 @@
 .chartContainer {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     background-color: #2d3236;
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 10px;
     position: relative;
     width:33%;
-    height: 250px;
+    height: 240px;
 }
 
 .doughnutContainer {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
     background-color: #2d3236;
     padding: 1rem;
     margin: 1rem 0;
     border-radius: 10px;
     width:33%;
-    height: 250px;
+    height: 240px;
 }
 
 .lineContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     background-color: #2d3236;
     padding: 1rem;
     margin: 1rem;
     border-radius: 10px;
     width:33%;
-    height: 250px;
+    height: 240px;
 }
 
 .bubbleContainer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     background-color: #2d3236;
     padding: 1rem;

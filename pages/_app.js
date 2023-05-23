@@ -1,46 +1,43 @@
+import React, { useState, useEffect } from 'react';
 import '../styles/globals.css';
 import homeStyles from '../styles/Home.module.css';
 import loaderStyles from '../styles/Loader.module.css';
 import Layout from '../components/Global/Layout';
 import StravaAuthorisation from '../helper_functions/Requests/Authorisation';
 import fetchAthleteData from '../helper_functions/Requests/FetchAthlete';
-import fetchAthleteStats from '../helper_functions/Requests/FetchAthleteStats';
 import fetchActivities from '../helper_functions/Requests/FetchActivities';
-import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Loader from '../Icons/Loader';
 import Link from 'next/link';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component }) {
   const [accessToken, setAccessToken] = useState(null);
   const [athleteData, setAthleteData] = useState({});
-  const [athleteStats, setAthleteStats] = useState({});
   const [activities, setActivities] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(true);
 
   const router = useRouter();
 
-  const mode = 'prod';
+  const mode = 'dev';
 
-  // Handle sign out by removing access token from local storage
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+  };
+
+  // Handle sign out by resetting the access token state
   const signOutHandler = () => {
-    localStorage.removeItem('accessToken');
     setAccessToken(null);
+    localStorage.clear()
     router.push('/signout');
   };
 
   const fetchAthleteDataReturn = async (accessToken) => {
     // Fetch athlete data using the access token
     const data = await fetchAthleteData(accessToken);
-
     return data;
-  };
-
-  const fetchAthleteStatsReturn = async (accessToken, athleteId) => {
-    // Fetch athlete stats using the access token and athlete ID
-    const stats = await fetchAthleteStats(accessToken, athleteId);
-
-    return stats;
   };
 
   const fetchAllActivities = async (accessToken) => {
@@ -83,17 +80,9 @@ function MyApp({ Component, pageProps }) {
       try {
         const data = await fetchAthleteDataReturn(accessToken);
         setAthleteData(data);
-        localStorage.setItem('athleteData', JSON.stringify(data));
-
-        if (data) {
-          const stats = await fetchAthleteStatsReturn(accessToken, data.id);
-          setAthleteStats(stats);
-          localStorage.setItem('athleteStats', JSON.stringify(stats));
-        }
 
         const activityData = await fetchAllActivities(accessToken);
         setActivities(activityData);
-        localStorage.setItem('activityData', JSON.stringify(activityData));
       } catch (error) {
         console.log('Error fetching athlete data:', error);
       } finally {
@@ -105,29 +94,8 @@ function MyApp({ Component, pageProps }) {
       fetchData();
     }
   }, [accessToken]);
-    
 
-  // if user is redirected from Strava OAuth link, get access token from local storage
-  useEffect(() => {
-    const urlParams = new URLSearchParams(router.asPath);
-    const storedAccessToken = localStorage.getItem('accessToken');
-    setAccessToken(storedAccessToken);
 
-    if (urlParams.has('state')) {
-      setAccessToken(null);
-      localStorage.removeItem('accessToken');
-      router.replace('/');
-    }
-  }, [router]);
-
-  useEffect(() => {
-    if (accessToken) {
-      localStorage.setItem('accessToken', accessToken);
-    }
-  }, [accessToken]);
-
-  // if access token is null, show connect page
-  // https://friendly-daffodil-a99ceb.netlify.app
   if (!accessToken) {
     let redirect_uri = '';
 
@@ -136,7 +104,7 @@ function MyApp({ Component, pageProps }) {
     } else {
       redirect_uri = 'http://localhost:3000';
     }
-    
+
     return (
       <div className={homeStyles.container}>
         <main>
@@ -153,7 +121,6 @@ function MyApp({ Component, pageProps }) {
     );
   }
 
-  // if request limit is reached, display message
   if (athleteData === 'requestLimit') {
     return (
       <div className={homeStyles.container}>
@@ -163,7 +130,6 @@ function MyApp({ Component, pageProps }) {
     );
   }
 
-  // if data is loading, show loading screen
   if (isLoading) {
     return (
       <div className={loaderStyles.newcontainer}>
@@ -177,18 +143,28 @@ function MyApp({ Component, pageProps }) {
     );
   }
 
-  // if all criteria are met, load main dashboard
   return (
-    <Layout
-      accessToken={accessToken}
-      signOut={signOutHandler}
-      isLoading={isLoading}
-      athleteData={athleteData}
-      athleteStats={athleteStats}
-      activities={activities}
-    >
-      <Component {...pageProps} />
-    </Layout>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <Layout
+        accessToken={accessToken}
+        signOut={signOutHandler}
+        isLoading={isLoading}
+        athleteData={athleteData}
+        activities={activities}
+        toggleTheme={toggleTheme}
+        isDarkMode={isDarkMode}
+        fetchAllActivities={fetchAllActivities}
+      >
+        <Component accessToken={accessToken}
+        signOut={signOutHandler}
+        isLoading={isLoading}
+        athleteData={athleteData}
+        activities={activities}
+        toggleTheme={toggleTheme}
+        isDarkMode={isDarkMode}
+        fetchAllActivities={fetchAllActivities} />
+      </Layout>
+    </LocalizationProvider>
   );
 }
 

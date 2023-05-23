@@ -1,6 +1,6 @@
 import React from 'react';
 import dashboardStyles from '../../styles/Dashboard.module.css';
-import { metersToKilometers, formatTime } from '../../helper_functions/helper';
+import { metersToKilometers, formatTime, convertCamelCaseToWords } from '../../helper_functions/helper';
 
 const StatsBox = ({ title, activities, activityType }) => {
   if (activityType === 'All' || activityType === title) {
@@ -19,10 +19,10 @@ const StatsBox = ({ title, activities, activityType }) => {
     return (
       <div className={dashboardStyles.statBox}>
         <div className={dashboardStyles.statRow}>
-          <h2>{title}</h2>
+          <h2>{convertCamelCaseToWords(title)}</h2>
           <p>{count}</p>
-          <p>{distance === 0 ? 'NA' : metersToKilometers(distance) + 'KM'}</p>
-          <p>{formatTime(totalElapsedTime)}</p>
+          <p>{distance === 0 ? 'N/A' : metersToKilometers(distance) + 'KM'}</p>
+          <p>{totalElapsedTime === 0 ? 'N/A' : formatTime(totalElapsedTime)}</p>
         </div>
       </div>
     );

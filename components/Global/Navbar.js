@@ -8,17 +8,12 @@ import Menu from '../../Icons/Menu.js';
 import Close from '../../Icons/Close.js'
 
 const Navbar = (props) => {
-  const { athlete, mode } = props;
+  const { athlete, mode, toggleTheme, isDarkMode } = props;
 
   const router = useRouter();
   const url = router.route;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(true);
-
-  const toggleTheme = () => {
-    setIsDarkMode(!isDarkMode);
-  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -73,6 +68,7 @@ const Navbar = (props) => {
               <label htmlFor="themeSwitch" className={navbarStyles.themeSwitchLabel}>
                 {isDarkMode ? 'Light Mode' : 'Dark Mode'}
               </label>
+              
             </div>
 
             <div className={navbarStyles.dropdown}>

@@ -7,11 +7,9 @@ import { useRouter } from 'next/router';
 
 Chart.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-const BarChart = ({ selectedActivity }) => {
-  const storedActivityData = localStorage.getItem('activityData');
+const BarChart = ({ selectedActivity, activities }) => {;
 
-  if (storedActivityData) {
-    const activities = JSON.parse(storedActivityData);
+  if (activities) {
     const filteredActivities = selectedActivity === 'All'
       ? activities
       : activities.filter(activity => activity.sport_type === selectedActivity);

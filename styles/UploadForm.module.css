@@ -4,16 +4,45 @@
     align-items: center;
     height: 90vh;
   }
+
+  .formWrapper {
+    display: flex;
+    flex-direction: column;
+  }
   
   .formContainer {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    width: 50%;
-    padding: 40px;
+    justify-content: flex-start;
+    align-items:stretch;
+    width: 100%;
+    padding: 2rem;
     background-color: #2d3236;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #fff;
+  }
+
+  .formContainer h4 {
+    padding: 0 0 1rem 0;
+  }
+
+  .formRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .formColumn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right:2rem;
+  }
+
+  .formRow .formColumn:last-child {
+    margin-right: 0;
   }
 
   .formContainer h1 {
@@ -27,7 +56,7 @@
   .formGroup input,
   .formGroup select,
   .formGroup textarea {
-    width: 100%;
+    width: 100% !important;
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ccc;
@@ -51,4 +80,10 @@
   .submitButton[disabled] {
     background-color: #fc520050;
     cursor: not-allowed;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .formRow {
+      flex-direction: column;
+    }
   }

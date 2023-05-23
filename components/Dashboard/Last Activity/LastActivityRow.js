@@ -4,8 +4,7 @@ import { formatDate, metersToKilometers, formatTime } from '../../../helper_func
 import Image from 'next/image';
 import { getImageSrc } from '../../../helper_functions/helper';
 
-const LastActivityRow = ({ lastActivity, selectedActivity }) => {
-  console.log(lastActivity)
+const LastActivityRow = ({ lastActivity, selectedActivity, activities }) => {
   if (lastActivity) {
     return (
       <div className={dashboardStyles.lastActivityRow}>
@@ -28,9 +27,6 @@ const LastActivityRow = ({ lastActivity, selectedActivity }) => {
             {metersToKilometers(lastActivity.distance)}KM
           </div>
         ) : null}
-        <div className={dashboardStyles.lastActivityStat}>
-          {formatTime(lastActivity.elapsed_time)}
-        </div>
       </div>
     );
   } else {

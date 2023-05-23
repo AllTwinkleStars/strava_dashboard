@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Signout = () => {
 
-    const mode = 'prod'
+    const mode = 'dev'
 
     let redirect_uri = '';
 
